@@ -22,16 +22,16 @@ const sketch = p => {
   ]
 
   
-  const createStretchedPentagon = (stretchFactor) => {
+  const createStretchedPentagon = (stretchFactor, offset) => {
     let stretchedPentagon = [
-        p.createVector(910  + p.randomGaussian(0, stretchFactor) , 320),
-        p.createVector(830.9188309203678 + p.randomGaussian(0, stretchFactor), 510.9188309203678),
-        p.createVector(640 + p.randomGaussian(0, stretchFactor), 590),
-        p.createVector(449.0811690796322 + p.randomGaussian(0, stretchFactor), 510.91883092036784),
-        p.createVector(370 + p.randomGaussian(0, stretchFactor),320.00000000000006),
-        p.createVector(449.0811690796321 + p.randomGaussian(0, stretchFactor), 129.0811690796322),
-        p.createVector(640 + p.randomGaussian(0, stretchFactor), 50),
-        p.createVector(830.9188309203678 + p.randomGaussian(0, stretchFactor), 129.08116907963213)
+        p.createVector(910  + p.randomGaussian(0, stretchFactor) + offset , 320+ offset ),
+        p.createVector(830.9188309203678 + p.randomGaussian(0, stretchFactor)+ offset , 510.9188309203678+ offset ),
+        p.createVector(640 + p.randomGaussian(0, stretchFactor)+ offset , 590+ offset ),
+        p.createVector(449.0811690796322 + p.randomGaussian(0, stretchFactor)+ offset , 510.91883092036784+ offset ),
+        p.createVector(370 + p.randomGaussian(0, stretchFactor)+ offset ,320.00000000000006+ offset ),
+        p.createVector(449.0811690796321 + p.randomGaussian(0, stretchFactor)+ offset , 129.0811690796322+ offset ),
+        p.createVector(640 + p.randomGaussian(0, stretchFactor)+ offset , 50+ offset ),
+        p.createVector(830.9188309203678 + p.randomGaussian(0, stretchFactor)+ offset , 129.08116907963213+ offset )
     ]
     return stretchedPentagon
   }
@@ -47,8 +47,9 @@ const sketch = p => {
     p.noStroke()
     canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     p.background(backgrounds[Math.round(p.random(0,1))])
-    drawCustomShape(createStretchedPentagon(200), [p.random(0,255), p.random(0,255), p.random(0,255), 10])
-    drawCustomShape(createStretchedPentagon(150), [p.random(0,255), p.random(0,255), p.random(0,255), 10])
+    drawCustomShape(createStretchedPentagon(300, p.random(-400,400)), [p.random(0,255), p.random(0,255), p.random(0,255), 10])
+    drawCustomShape(createStretchedPentagon(150, p.random(-400,400)), [p.random(0,255), p.random(0,255), p.random(0,255), 10])
+    drawCustomShape(createStretchedPentagon(0, p.random(-400,400)), [p.random(0,255), p.random(0,255), p.random(0,255), 10])
     p.frameRate(0.1)
   }
 
