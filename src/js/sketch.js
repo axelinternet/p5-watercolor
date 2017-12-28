@@ -7,7 +7,8 @@ const sketch = p => {
   let logoWidth = 250
   let logoHeight = 114
   const st_deviation = 100
-  const layers = 50
+  const layers = 80
+  const backgrounds = [0,255]
 
   let pentagon = [
       p.createVector(910, 320),
@@ -20,35 +21,48 @@ const sketch = p => {
       p.createVector(830.9188309203678, 129.08116907963213)
   ]
 
+  
+  const createStretchedPentagon = (stretchFactor) => {
+    let stretchedPentagon = [
+        p.createVector(910  + p.randomGaussian(0, stretchFactor) , 320),
+        p.createVector(830.9188309203678 + p.randomGaussian(0, stretchFactor), 510.9188309203678),
+        p.createVector(640 + p.randomGaussian(0, stretchFactor), 590),
+        p.createVector(449.0811690796322 + p.randomGaussian(0, stretchFactor), 510.91883092036784),
+        p.createVector(370 + p.randomGaussian(0, stretchFactor),320.00000000000006),
+        p.createVector(449.0811690796321 + p.randomGaussian(0, stretchFactor), 129.0811690796322),
+        p.createVector(640 + p.randomGaussian(0, stretchFactor), 50),
+        p.createVector(830.9188309203678 + p.randomGaussian(0, stretchFactor), 129.08116907963213)
+    ]
+    return stretchedPentagon
+  }
+
   p.preload = () => {
     logo = p.loadImage("assets/p5js.svg")
   }
 
   p.setup = () => {
+  }
+
+  p.draw = () => {
     p.noStroke()
     canvas = p.createCanvas(p.windowWidth, p.windowHeight)
-    p.background(255)
+    p.background(backgrounds[Math.round(p.random(0,1))])
+    drawCustomShape(createStretchedPentagon(200), [p.random(0,255), p.random(0,255), p.random(0,255), 10])
+    drawCustomShape(createStretchedPentagon(150), [p.random(0,255), p.random(0,255), p.random(0,255), 10])
+    p.frameRate(0.1)
+  }
+
+  const drawCustomShape = (shapeArchetype, color) => {
     for (let j = 0; j < layers; j += 1) {
-      let shape = polygon(pentagon, 1)
-      p.fill(255, 0,0, 10)
+      let shape = polygon(shapeArchetype, 1)
+      p.fill(color)
       p.beginShape();
       for (let i of shape) {
         p.vertex(i.x, i.y)
       }
       p.endShape(p.CLOSE);
-      
     }
   }
-
-  p.draw = () => {
-    p.frameRate(0)
-  }
-
-  p.windowResized = () => {
-    p.resizeCanvas(p.windowWidth, p.windowHeight)
-    p.image(logo, p.windowWidth/2 - logoWidth/2, p.windowHeight/2 - logoHeight/2)
-  }
-
 
   function polygon(currentShape, dep) {
     if (dep >= 7) {
