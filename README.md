@@ -10,3 +10,4 @@ Started with [this](https://github.com/mkontogiannis/p5.js-es6-babel-sass-webpac
 
 - Variations in the parameters for each layer. 
 - Add different masking for different layer.
+- Bezier curve inbetween vertex?
