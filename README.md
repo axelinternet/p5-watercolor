@@ -2,7 +2,7 @@
 
 ![Sample1](samples/sample1.png)
 
-p5 implementation of [Typer Hobbs generative watercolor simulation](http://www.tylerlhobbs.com/writings/watercolor).
+p5 implementation of [Typer Hobbs generative watercolor simulation](https://tylerxhobbs.com/essays/2017/a-generative-approach-to-simulating-watercolor-paints).
 
 Started with [this](https://github.com/mkontogiannis/p5.js-es6-babel-sass-webpack-boilerplate) boilerplate. 
 
